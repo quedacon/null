@@ -37,10 +37,10 @@ game = {
   //==================================================
   // game entitiy constructor
   //==================================================
-  Entity: function(name, image, x, y, w, h) {
+  Entity: function(name, sprite, x, y, w, h) {
     // basic properties
     this.name = name;
-    this.image = image;
+    this.sprite = sprite;
     this.x = x;
     this.y = y;
     this.w = w || 32;
@@ -114,30 +114,28 @@ game = {
   // create graphics
   //==================================================
   createGraphics: function() {
-    game.graphics.ship = new game.Image("ship", "images/hero.png");
+    game.graphics.ship = new game.Image("Viper", "images/hero.png");
   },
 
   //==================================================
   // create game entities
   //==================================================
   createEntities: function() {
-    
-    // graphics shortcuts
 
+    // graphic resource shortcuts
+    var ship = game.graphics.ship;  
     
     // create enemy entities
-    //game.entities.enemies = new Array();
-    /*
+    game.entities.enemies = new Array();
+    
     for (i = 0; i < 100; i++) {
-      var rx = Math.random() * 400;
-      var ry = Math.random() * 400;
+      var rx = Math.random() * 200;
+      var ry = Math.random() * 200;
       game.entities.enemies[i] = new game.Entity("test", ship, rx, ry );
     }
-    */
     
     // create player entity
-    var ship = game.graphics.ship;
-    game.entities.ship = new game.Entity("ship", ship, 32, 32);
+    game.entities.player = new game.Entity("Vic", ship, 32, 32);
     
   },
   

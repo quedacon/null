@@ -2,7 +2,7 @@
 // create player attributes and movement methods
 //==================================================  
 game.createPlayerControls = function() {
-  var player = game.entities.ship;
+  var player = game.entities.player;
   
   player.speed = 4;
   
@@ -39,7 +39,7 @@ game.keyBinds = {
 // player keyboard controls
 //==================================================
 game.processInput = function() {
-  var player = game.entities.ship;
+  var player = game.entities.player;
   var key = game.keyBinds;
 
   if (key.left in game.keysDown) {

@@ -21,21 +21,33 @@ game.update = function() {
 //==================================================
 game.render = function() {
   
-  if (game.graphics.ship.image.ready) {
-    var i = game.entities.ship
-    game.context.drawImage(game.graphics.ship.image, i.x, i.y)
-  }
+  // shortcut
+  var e = game.entities
   
-  /*
-  // render non-array entities
-  if (game.graphics.ship.image.image.ready) {
-    game.context.drawImage(game.graphics.ship.image.image,
-                           game.entities.ship.x,
-                           game.entities.ship.y);
-  }
-  */
+  // for each entity
+  for (i in e) {
+
+    // is the entity actually an array?
+    if ( Array.isArray(e[i]) ) {
+      // then for each entity in the array
+      for (j in i) {
+        // is the image ready?
+        if (e[i][j].sprite.image.ready) {
+          // render the entity!
+          game.context.drawImage(e[i][j].sprite.image, e[i][j].x, e[i][j].y);
+        }
+      }
+    }
   
-}
+    // is the image ready?
+    else if (e[i].sprite.image.ready) {
+      // render the entity!
+      game.context.drawImage(e[i].sprite.image, e[i].x, e[i].y);
+    }
+    
+  } // end loop
+  
+} // end render
 
 //==================================================
 // main loop
