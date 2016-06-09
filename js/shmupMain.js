@@ -1,87 +1,103 @@
 //====================================================
 // SHMUP. A spacey shoot 'em up game
-// made with HTML5 and javascript.
+// made with HTML5 and JavaScript.
 //----------------------------------------------------
-// updated 6.1.2016
+// updated June 5 2016
 // by Cody Williams
 // @quedacon
 // quedacon@gmail.com
 //====================================================
 
-//==================================================
+//====================================================
+// render a game entity
+//====================================================
+game.renderEntity = function(entity) {
+  // is the image ready?
+  if (entity.sprite.image.ready) {
+    // is it visible right now?
+    if (entity.visible) {
+
+      if (entity.animated) {
+        entity.updateAnimation();
+      }
+    
+      // get the image
+      var img = entity.sprite.image;
+      // sprite source coordinates
+      var sx = entity.animation.sx;
+      var sy = entity.animation.sy;
+      var sw = entity.animation.sw;
+      var sh = entity.animation.sh;
+      // destination on screen
+      var dx = entity.x;
+      var dy = entity.y;
+      var dw = entity.w;
+      var dh = entity.h;
+      // draw it!
+      game.mid_context.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh);
+      //game.mid_context.drawImage(e.sprite.image, a.sx, a.sy, a.sw, a.sh, e.x, e.y, e.w, e.h);
+      // update the animation
+
+    }
+  }
+}
+
+//====================================================
 // update
-//==================================================
-game.update = function() {
-  game.processInput();
+//====================================================
+game.update = function(time_multiplier) {
+  game.processInput(time_multiplier);
+  game.updatePlayer();
   game.checkForCollisions();
 }
 
-//==================================================
+//====================================================
 // render
-//==================================================
+//====================================================
 game.render = function() {
-  
-  // shortcut
-  var e = game.entities
-  
-  // for each entity
-  for (i in e) {
-
-    // is the entity actually an array?
-    if ( Array.isArray(e[i]) ) {
-      // then for each entity in the array
-      for (j in i) {
-        // is the image ready?
-        if (e[i][j].sprite.image.ready) {
-          // render the entity!
-          game.context.drawImage(e[i][j].sprite.image, e[i][j].x, e[i][j].y);
-        }
+  for (var i in game.entities) {
+    if ( Array.isArray(game.entities[i]) )
+      for (var j in game.entities[i]) {
+        game.renderEntity(game.entities[i][j]);
       }
-    }
-  
-    // is the image ready?
-    else if (e[i].sprite.image.ready) {
-      // render the entity!
-      game.context.drawImage(e[i].sprite.image, e[i].x, e[i].y);
-    }
-    
-  } // end loop
-  
-} // end render
+    else
+      game.renderEntity(game.entities[i]);
+  }
+}
 
-//==================================================
+//====================================================
 // main loop
-//==================================================
+//====================================================
 game.main = function() {
-
   // calculate time
   game.now = Date.now();
   game.delta = game.now - game.then;
-  
   // update and render
   game.update(game.delta / 1000);
   game.render();
-  
   // update time and request frame
   game.then = game.now;
   requestAnimationFrame(game.main);
-
 }
 
-//==================================================
+//====================================================
 // run the game
-//==================================================
-
-// create all the things
-game.createCanvas();
+//====================================================
+// create container div
+game.createContainerDiv();
+// create canvas layers
+game.createCanvas("back");
+game.createCanvas("mid");
+game.createCanvas("fore");
+// create graphics and controls
 game.createKeyboardListener();
 game.createGraphics();
+// create game objects
 game.createEntities();
-game.createPlayerControls();
-
-// initialize then for updating
+game.createPlayer();
+// create time
 game.then = Date.now();
-
-// run the game
+// debug message
 if (game.debug) { console.log("game start") }
+// run the game
 game.main();
