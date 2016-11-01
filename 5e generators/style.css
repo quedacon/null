@@ -1,0 +1,54 @@
+p {
+  font-family: verdana;
+  font-size: 12px;
+  margin: 0px;
+}
+#interface {
+  width: 140px;
+  float: left;
+}
+input {
+  width: 20%;
+  margin-bottom: -1px;
+  font-family: verdana;
+  font-size: 12px;
+  background-color: #ffffff;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 2px;
+  border-color: #888888;
+}
+button {
+  width: 100%;
+  margin-top: 6px;
+  margin-bottom: -1px;
+  font-family: verdana;
+  font-size: 12px;
+  background-color: #eeeeee;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 2px;
+  border-color: #888888;
+}
+select {
+  width: 100%;
+  font-family: verdana;
+  font-size: 12px;
+  background-color: #eeeeee;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 2px;
+  border-color: #888888;
+}
+#display {
+  float: left;
+  display: inline;
+  width: auto;
+  padding: 5px;
+  margin-left: 5px;
+  background-color: #eeeeee;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 2px;
+  border-color: #888888;
+}

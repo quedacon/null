@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>D&amp;D Generators</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <div id="interface">
+      <button onclick="newNPC()">Make NPC</button>
+      <button onclick="newMagicItem()">Make Magic Item</button>
+      <button onclick="newCoins()">Individual Treasure</button>
+      <select id="coinsCR">
+        <option value="cr0_4">Challenge 0-4</option>
+        <option value="cr5_10">Challenge 5-10</option>
+        <option value="cr11_16">Challenge 11-16</option>
+        <option value="cr17_">Challenge 17+</option>
+      </select>
+      <button onclick="newHorde()">Treasure Horde</button>
+      <select id="hordeCR">
+        <option value="cr0_4">Challenge 0-4</option>
+        <option value="cr5_10">Challenge 5-10</option>
+        <option value="cr11_16">Challenge 11-16</option>
+        <option value="cr17_">Challenge 17+</option>
+      </select>
+      <button onclick="newGem()">Make Gem</button>
+      <select id="gemValue">
+        <option value="gp10">10 GP</option>
+        <option value="gp50">50 GP</option>
+        <option value="gp100">100 GP</option>
+        <option value="gp500">500 GP</option>
+        <option value="gp1000">1000 GP</option>
+        <option value="gp5000">5000 GP</option>
+      </select>
+      <button onclick="newArtObject()">Make Art Object</button>
+      <select id="artValue">
+        <option value="gp25">25 GP</option>
+        <option value="gp250">250 GP</option>
+        <option value="gp750">750 GP</option>
+        <option value="gp2500">2500 GP</option>
+        <option value="gp7500">7500 GP</option>
+      </select>
+    </div>
+
+    <script src="generators.js"></script>
+    <script src="generatorData.js"></script>
+
+  </body>
+</html>
